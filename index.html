@@ -165,7 +165,7 @@ section{padding:72px 0}
 <div class="acts"><a class="btn wal" href="#" data-m="Olá! Vi o site da Revoz e quero solicitar um orçamento.">Solicitar orçamento</a><a class="ghost" href="#como">Ver como funciona</a></div>
 <div class="micro">Sem compromisso. Você fala direto com a equipe pelo WhatsApp.</div>
 </div>
-<div class="phone" id="ph"><video id="vd" src="revoz-video.mp4" poster="video-capa.jpg" playsinline preload="none" aria-label="Vídeo da sirene Revoz em funcionamento"></video><button class="play" id="pl" aria-label="Assistir ao vídeo da Revoz"><i></i>Veja a Revoz funcionando</button></div>
+<div class="phone" id="ph"><video id="vd" src="revoz-video.mp4" poster="video-capa.jpg" playsinline preload="metadata" aria-label="Vídeo da sirene Revoz em funcionamento"></video><button class="play" id="pl" aria-label="Assistir ao vídeo da Revoz"><i></i>Veja a Revoz funcionando</button></div>
 </div></section>
 
 <section class="faixa" aria-label="Números da Revoz"><div class="w">
@@ -282,7 +282,7 @@ bg.onclick=function(){tg(!mn.classList.contains("open"))};
 mn.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){tg(false)})});
 /* vídeo */
 var ph=document.getElementById("ph"),vd=document.getElementById("vd");
-document.getElementById("pl").onclick=function(){ph.classList.add("on");vd.controls=true;vd.play()};
+document.getElementById("pl").onclick=function(){ph.classList.add("on");vd.controls=true;var pr=vd.play();if(pr&&pr.catch)pr.catch(function(){vd.controls=true})};
 /* aparecer ao rolar + contagem (uma vez só) */
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add("in");io.unobserve(e.target)})},{threshold:.2});
 document.querySelectorAll(".rv").forEach(function(el){io.observe(el)});
